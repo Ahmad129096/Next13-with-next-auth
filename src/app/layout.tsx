@@ -1,5 +1,6 @@
 import "./globals.css";
 import { NextAuthProvider } from "./providers";
+import { Providers } from "./redux/provider";
 
 export const metadata = {
   title: "Create Next App",
@@ -14,7 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <Providers>
+          <NextAuthProvider>{children}</NextAuthProvider>
+        </Providers>
       </body>
     </html>
   );

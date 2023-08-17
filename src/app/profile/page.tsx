@@ -1,9 +1,14 @@
-import { getServerSession } from "next-auth";
+"use client";
+import { useSession } from "next-auth/react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "@/components/header.component";
 import { authOptions } from "@/lib/auth";
+import { decrement, increment } from "../redux/slices/conterSlice";
 
-export default async function Profile() {
-  const session = await getServerSession(authOptions);
+export default function Profile() {
+  const dispatch = useDispatch();
+  const counter = useSelector((state: any) => state.counter);
+  const { data: session } = useSession();
   const user = session?.user;
 
   return (
@@ -33,6 +38,23 @@ export default async function Profile() {
               </div>
             )}
           </div>
+          <button
+            onClick={() => dispatch(increment())}
+            type="button"
+            className="ml-5 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          >
+            increment
+          </button>
+
+          <button
+            onClick={() => dispatch(decrement())}
+            type="button"
+            className="ml-5 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          >
+            decrement
+          </button>
+
+          <h1>counter: {counter?.value}</h1>
         </div>
       </section>
     </>
