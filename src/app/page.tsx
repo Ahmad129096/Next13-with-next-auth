@@ -1,4 +1,6 @@
 import Header from "@/components/header.component";
+import Content from "@/pages/content";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -11,6 +13,7 @@ export default async function Home() {
           </p>
         </div>
       </section>
+      <Content />
     </>
   );
 }

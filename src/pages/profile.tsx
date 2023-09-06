@@ -1,9 +1,9 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
-import Header from "@/components/header.component";
 import { authOptions } from "@/lib/auth";
-import { decrement, increment } from "../redux/slices/conterSlice";
+import { increment, decrement } from "@/app/redux/slices/conterSlice";
+import Header from "@/components/header.component";
 
 export default function Profile() {
   const dispatch = useDispatch();
